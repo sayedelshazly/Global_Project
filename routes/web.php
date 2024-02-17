@@ -23,7 +23,7 @@ Route::resource('posts', PostsController::class);
 // Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore')->middleware('check_user');
 // Route::get('posts/forcedelete/{id}', [PostsController::class, 'forceDelete'])->name('forcedelete')->middleware('check_user');
 
-Route::middleware(['check_user'])->group(function () {
+Route::middleware(['check_user', 'auth'])->group(function () {
     Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore');
     Route::get('posts/forcedelete/{id}', [PostsController::class, 'forceDelete'])->name('forcedelete');
 });

@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Post;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -18,12 +18,17 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         // $post = new Post();
         // $post->title = $request->title;
         // $post->body = $request->body;
         // $post->save();
+
+        // $request->validate([
+        //     'title' => 'required',
+        //     'body' => 'required'
+        // ]);
 
         Post::create([
             'title' => $request->title, 
@@ -48,13 +53,18 @@ class PostsController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(StorePostRequest $request, string $id)
     {
         $post = Post::findOrFail($id);
 
         // $post->title = $request->title;
         // $post->body = $request->body;
         // $post->save();
+
+        // $request->validate([
+        //     'title' => ['required', 'unique:posts', 'max:255'],
+        //     'body' => ['required'],
+        // ]);
 
         $post->update([
             'title' => $request->title,

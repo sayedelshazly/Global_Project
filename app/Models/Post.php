@@ -17,4 +17,6 @@ class Post extends Model
     // protected $table = "my_posts" ;//in this case i change the name of table to (my_posts) not [conventionNames] 
     public $timestamps = false; // stop it from work
 
+   
+
 }

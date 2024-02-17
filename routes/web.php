@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('posts', PostsController::class);
-Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore');
+Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore'); 
 Route::get('posts/forcedelete/{id}', [PostsController::class, 'forceDelete'])->name('forcedelete');
 
 Auth::routes();

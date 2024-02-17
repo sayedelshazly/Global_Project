@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('show')
+@section('archive')
 <h1 class="text-center text-primary m-5">Show All Posts Archived</h1>
 
 

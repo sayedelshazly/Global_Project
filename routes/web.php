@@ -1,8 +1,9 @@
 <?php
-
 use App\Http\Controllers\PostsController;
+use App\Mail\testMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
+})->middleware(['auth']);
+
+
+
+Route::get('/send', function () {
+    Mail::to('selshazly724@gmail.com')->send(new testMail);
+    return response('done00');
 });
 
 Route::resource('posts', PostsController::class);

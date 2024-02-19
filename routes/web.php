@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\AskController;
 use App\Mail\testMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth']);
+})->middleware('auth');
 
 
 
@@ -27,11 +28,13 @@ Route::get('/send', function () {
     return response('done00');
 });
 
-Route::resource('posts', PostsController::class);
+Route::resource('ask', AskController::class);
+
 // Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore')->middleware('check_user');
 // Route::get('posts/forcedelete/{id}', [PostsController::class, 'forceDelete'])->name('forcedelete')->middleware('check_user');
 
 Route::middleware(['check_user', 'auth'])->group(function () {
+    Route::resource('posts', PostsController::class);
     Route::get('posts/restore/{id}', [PostsController::class, 'restore'])->name('restore');
     Route::get('posts/forcedelete/{id}', [PostsController::class, 'forceDelete'])->name('forcedelete');
 });
